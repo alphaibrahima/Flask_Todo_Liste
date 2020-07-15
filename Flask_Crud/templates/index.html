@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pt-5">
+    <h2 class="text-center"> Gestion Du Temps </h2>
+    <p class="lead text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Nulla, praesentium ea qui ipsum aliquam, in distinctio similique culpa 
+        laborum inventore ratione facere ab cumque iusto maiores explicabo 
+        eligendi iure quas?
+    </p>
+</div>
+<!-- Inclure la formulaire -->
+{% include "partials/_form.html"%}
+
+<!-- Afficher les taches  -->
+{%if taches %}
+
+<div class="tableau">
+    <table class="table">
+        <tr>
+            <thead>
+                <th>Tache</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </thead>
+        </tr>
+    
+        <tbody>
+            {% for tache in taches %}
+            <tr>
+                <td>  {{tache.name}} </td>
+                <td>  {{tache.created_at.date()}} </td>
+                <td>
+                    <a href="/delete/{{tache.id}}/" class="btn btn-danger">Delete</a>
+                    <a href="/update/{{tache.id}}/" class="btn btn-warning">Update</a>
+                </td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>Pas de tache aujourd'hui...</p>
+{% endif %}
+{% endblock content %}
